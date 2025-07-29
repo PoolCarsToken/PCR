@@ -13,3 +13,7 @@ states/
 # Optional
 .env
 .env.local
+node_modules/
+.env
+artifacts/
+cache/
