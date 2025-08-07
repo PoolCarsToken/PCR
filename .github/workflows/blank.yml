@@ -1,0 +1,36 @@
+name: PoolCars CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clona o repositório
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Configura o Node.js (versão 18)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Instala dependências
+      - name: Install dependencies
+        run: npm install
+
+      # Executa os testes
+      - name: Run tests
+        run: npm test
+
+      # Exibe mensagem de sucesso
+      - name: Show success message
+        run: echo 🚗 PoolCars - Integração concluída com sucesso!
