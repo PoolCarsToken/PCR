@@ -1,19 +1,26 @@
-# Remix compiler artifacts
-**/artifacts/
-**/artifacts/**
+name: Solidity CI
 
-# Remix plugin state folders
-deps/
-states/
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 
-# Debug info
-*.dbg.json
-*.tsbuildinfo
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-# Optional
-.env
-.env.local
-node_modules/
-.env
-artifacts/
-cache/
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Compilar contrato
+        run: npx hardhat compile
