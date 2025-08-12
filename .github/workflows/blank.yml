@@ -26,3 +26,8 @@ jobs:
       - name: Compilar contrato Solidity
         run: npx hardhat compile
 
+- name: Install dependencies
+  run: npm install
+  working-directory: ./frontend
+
+  
