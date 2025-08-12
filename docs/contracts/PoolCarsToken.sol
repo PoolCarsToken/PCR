@@ -1,4 +1,3 @@
-# Arquivos para adicionar ao seu repositório PoolCars (crie esses arquivos exatamente como mostrado)
 
 // ---------- contracts/PoolCarsToken.sol ----------
 // SPDX-License-Identifier: MIT
@@ -59,30 +58,26 @@ contract PoolCarsToken is ERC20, Ownable {
 // Deploy script para Hardhat (node.js)
 
 const hre = require("hardhat");
-
-async function main() {
+  async function main() { ... } // {}
   const [deployer] = await hre.ethers.getSigners();
   console.log("Deploying contracts with account:", deployer.address);
-
   const PoolCars = await hre.ethers.getContractFactory("PoolCarsToken");
 
   // Ajuste os argumentos abaixo antes do deploy
+  
   const name = "PoolCars";
   const symbol = "PCR";
   const totalSupply = hre.ethers.BigNumber.from("100000000000000"); // 100 trilhões (sem decimais)
   const maxTransfer = hre.ethers.BigNumber.from("1000000000"); // ex: 1.000.000.000 (sem decimais)
   const owner = deployer.address;
-
   const token = await PoolCars.deploy(name, symbol, totalSupply, maxTransfer, owner);
   await token.deployed();
-
   console.log("PoolCarsToken deployed to:", token.address);
-}
-
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+{}
 
 
 // ---------- hardhat.config.js ----------
